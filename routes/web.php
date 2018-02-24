@@ -12,5 +12,6 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $coins = json_decode(file_get_contents('https://min-api.cryptocompare.com/data/all/coinlist'))->Data;
+    return view('welcome', compact('coins'));
 });
