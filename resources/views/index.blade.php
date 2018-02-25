@@ -4,12 +4,20 @@
  */
 ?>
 
-@extends('default')
+@extends('layouts.default')
 
 @section('page_title', 'White Trash Fabulous')
 
 @section('content')
 <div class="container">
+    <h2>Blockchain Analysis</h2>
+    <ul>
+        <li><a href="/coin/btc">Bitcoin (BTC)</a></li>
+    </ul>
+</div>
+
+<div class="container">
+    <h2>All Currencies</h2>
     <table class="table table-hover table-sm table-striped">
         <thead class="thead-dark">
             <tr>
