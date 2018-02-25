@@ -52,10 +52,10 @@ Route::get('/coin/{coin}', function ($coin) {
                     'hash' => $block->hash,
                     'prev_block' => $block->prev_block,
                     'symbol' => 'BTC',
-                    'height' => $block->height,
-                    'n_tx' => $block->n_tx,
-                    'total' => $block->total,
-                    'fees' => $block->fees,
+                    'height' => (string) $block->height,
+                    'n_tx' => (string) $block->n_tx,
+                    'total' => (string) $block->total,
+                    'fees' => (string) $block->fees,
                     'time' => strtotime($block->time),
                 ]);
 
