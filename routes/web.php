@@ -37,7 +37,7 @@ Route::get('/coin/{coin}', function ($coin) {
     }
     
     $blocks = [];
-    for ($i = 0; $i < 20; $hash = $block->prev_block) {
+    for ($i = 0; $i < 3; $hash = $block->prev_block) {
         $block = App\Block::find($hash);
 
         if (empty($block)) {
