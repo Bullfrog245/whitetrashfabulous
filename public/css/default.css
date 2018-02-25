@@ -1,0 +1,30 @@
+/**
+ *
+ * 0D7FFF - 0CAEE8 - 00FFFF - 0CE8AA - 0DFF76
+ */
+h1 a, .h1 a,
+h1 a:active, .h1 a:active,
+h1 a:focus, .h1 a:focus,
+h1 a:hover, .h1 a:focus {
+    color: #000;
+    display: inline-block;
+    text-decoration: none;
+}
+h2, .h2 {
+    padding-top: 20px;
+}
+
+
+.header {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.site-name {
+    font-family: 'Comfortaa', cursive;
+    font-size: 24px;
+}
+.site-name span {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 100px;
+}
