@@ -11,6 +11,8 @@
 |
 */
 
+use App\Block;
+
 Route::get('/', function () {
     if (Cache::has( 'coinlist')) {
 		$coins = Cache::get('coinlist');
@@ -22,53 +24,8 @@ Route::get('/', function () {
 });
 
 Route::get('/coin/{coin}', function ($coin) {
-
-    $apiContext = resolve('BlockCypher\Rest\ApiContext');
     $symbol = strtoupper($coin);
-    $messages = '';
-
-    try {
-        $chain = \BlockCypher\Api\Chain::get("{$symbol}.main", array(), $apiContext);
-        $hash = $chain->previous_hash;
-    } catch (Exception $e) {
-        $messages = $e->getMessage();
-        $chain = App\Block::latest('time')->first();
-        $hash = $chain->prev_block;
-    }
+    $blocks = Block::where('symbol', $symbol)->orderBy('time', 'desc')->get();
     
-    $blocks = [];
-    for ($i = 0; $i < 3; $hash = $block->prev_block) {
-        $block = App\Block::find($hash);
-
-        if (empty($block)) {
-            try {
-                $block = \BlockCypher\Api\Block::get(
-                    $hash,
-                    array('limit' => 1),
-                    $apiContext
-                );
-                
-                $block = App\Block::create([
-                    'hash' => $block->hash,
-                    'prev_block' => $block->prev_block,
-                    'symbol' => 'BTC',
-                    'height' => (string) $block->height,
-                    'n_tx' => (string) $block->n_tx,
-                    'total' => (string) $block->total,
-                    'fees' => (string) $block->fees,
-                    'time' => strtotime($block->time),
-                ]);
-
-                ++$i;
-            } catch (Exception $e) {
-                $messages = $e->getMessage();
-                break;
-            }
-        }
-
-        $blocks[] = $block;
-    }
-
-
-    return view('coin', compact('blocks', 'messages'));
+    return view('coin', compact('blocks'));
 });

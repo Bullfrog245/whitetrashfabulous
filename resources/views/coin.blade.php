@@ -20,6 +20,7 @@
         <thead class="thead-dark">
             <tr>
                 <th scope="col">Hash</th>
+                <th scope="col">Height</th>
                 <th scope="col">Time</th>
                 <th class="text-right" scope="col">Txns</th>
                 <th class="text-right" scope="col">Total (Satoshi)</th>
@@ -32,6 +33,7 @@
         @foreach($blocks as $block)
             <tr>
                 <td><pre>{{ substr($block->hash, 18, 7) }}</pre></td>
+                <td><pre>{{ $block->height }}</pre></td>
                 <td><pre>{{ date('Y-m-d\Tg:i:s\Z', $block->time) }}</pre></td>
                 <td class="text-right"><pre>{{ $block->n_tx }}</pre></td>
                 <td class="text-right">
