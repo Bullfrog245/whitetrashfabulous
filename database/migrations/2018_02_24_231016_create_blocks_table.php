@@ -18,9 +18,9 @@ class CreateBlocksTable extends Migration
             $table->string('prev_block');
             $table->string('symbol');
             $table->string('height');
-            $table->unsignedBigInteger('n_tx');
-            $table->unsignedBigInteger('total');
-            $table->unsignedBigInteger('fees');
+            $table->string('n_tx');
+            $table->string('total');
+            $table->string('fees');
             $table->integer('time');
         });
     }
