@@ -21,19 +21,31 @@
             <tr>
                 <th scope="col">Hash</th>
                 <th scope="col">Time</th>
-                <th scope="col">Transactions</th>
-                <th scope="col">Total</th>
-                <th scope="col">Fees</th>
+                <th class="text-right" scope="col">Txns</th>
+                <th class="text-right" scope="col">Total (Satoshi)</th>
+                <th class="text-right" scope="col">Total (BTC)</th>
+                <th class="text-right" scope="col">Fees (Satoshi)</th>
+                <th class="text-right" scope="col">Fees (BTC)</th>
             </tr>
         </thead>
         <tbody>
         @foreach($blocks as $block)
             <tr>
-                <td>{{ $block->hash }}</td>
-                <td>{{ $block->time }}</td>
-                <td>{{ $block->n_tx }}</td>
-                <td>{{ $block->total }}</td>
-                <td>{{ $block->fees }}</td>
+                <td><pre>{{ substr($block->hash, 18, 7) }}</pre></td>
+                <td><pre>{{ date('Y-m-d\Tg:i:s\Z', $block->time) }}</pre></td>
+                <td class="text-right"><pre>{{ $block->n_tx }}</pre></td>
+                <td class="text-right">
+                    <pre>{{ $block->total }}</pre>
+                </td>
+                <td class="text-right">
+                    <pre>{{ number_format($block->total / 100000000, 8, '.', '') }}</pre>
+                </td>
+                <td class="text-right">
+                    <pre>{{ $block->fees }}</pre>
+                </td>
+                <td class="text-right">
+                    <pre>{{ number_format($block->fees / 100000000, 8, '.', '') }}</pre>
+                </td>
             </tr>
         @endforeach
         </tbody>
