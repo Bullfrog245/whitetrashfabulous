@@ -25,7 +25,7 @@ Route::get('/', function () {
 
 Route::get('/coin/{coin}', function ($coin) {
     $symbol = strtoupper($coin);
-    $blocks = Block::where('symbol', $symbol)->orderBy('time', 'desc')->get();
+    $blocks = Block::where('symbol', $symbol)->orderBy('time', 'desc')->limit(200)->get();
     
     return view('coin', compact('blocks'));
 });
